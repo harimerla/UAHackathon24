@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <a href='{{ url_for("index") }}'><img src="../static/images/logo.png" alt="Company Logo" class="logo" height="10"></a>
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#">Home</a></li>
+                <li class="nav-item"><a href="#">About</a></li>
+                <li class="nav-item"><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="debit_div" style="margin-top:5%">
+    <div class="text-center"
+        <div id="plot" style="width:75%;height:450px;margin:auto"></div>
+        <br><br><br><br><br><br><br>
+        <div id="plot2" style="width:75%;height:450px;margin:auto"></div>
+    </div>
+    {% if json_transactions|length < 1 %}
+        <h4 style="text-align: center">There are no tasks. Create one below!</h4>
+    {% else %}
+            <script type="text/javascript">
+                var dates;
+                var trans;
+                var lines_json;
+                dates = ['2020-06-26', '2020-06-26', '2020-07-02', '2020-07-02', '2020-07-03', '2020-07-03', '2020-07-03', '2020-07-09', '2020-07-09', '2020-07-11', '2020-07-15', '2020-07-15', '2020-07-19', '2020-07-28', '2020-07-28', '2020-07-28', '2020-07-28', '2020-07-28', '2020-08-03', '2020-08-07', '2020-08-07', '2020-08-10', '2020-08-10', '2020-08-15', '2020-08-15', '2020-08-15', '2020-08-22', '2020-08-22', '2020-08-23', '2020-08-23', '2020-08-31', '2020-08-31', '2020-08-31', '2020-08-31', '2020-09-03', '2020-09-05', '2020-09-05', '2020-09-11', '2020-09-11', '2020-09-11', '2020-09-17', '2020-09-17', '2020-09-17', '2020-10-03', '2020-10-03', '2020-10-03', '2020-10-03', '2020-10-04', '2020-11-02', '2020-11-02', '2020-11-09', '2020-11-09', '2020-11-09', '2020-11-24', '2020-11-24', '2020-11-28', '2020-11-28', '2020-12-04', '2020-12-04', '2020-12-04', '2020-12-04', '2020-12-04', '2020-12-04', '2020-12-04', '2020-12-14', '2020-12-14', '2020-12-20', '2020-12-20', '2020-12-20', '2020-12-20', '2020-12-20', '2020-12-20', '2020-12-20', '2020-12-20', '2020-12-20', '2020-12-27', '2020-12-27', '2020-12-29', '2020-12-31', '2020-12-31']
+                trans = [55.21, 55.21, 454.27, 454.27, 130.73, 130.73, 91.69, 88.38, 88.38, 49.98, 68.28, 68.28, 131.61, 135.89, 50.53, 135.89, 50.53, 67.66, 29.23, 46.26, 46.26, 74.8, 74.8, 45.15, 81.18, 45.15, 139.14, 88.23, 100.04, 100.04, 159.83, 73.98, 159.83, 73.98, 55.04, 47.19, 47.19, 35.95, 35.95, 75.87, 31.73, 100.55, 36.7, 143.62, 38.64, 143.62, 38.64, 73.95, 152.59, 152.59, 474.95, 474.95, 76.64, 61.79, 61.79, 98.09, 98.09, 75.06, 77.26, 73.13, 75.06, 77.26, 73.13, 77.65, 93.32, 87.94, 80.06, 147.2, 72.11, 67.27, 67.27, 102.41, 80.06, 147.2, 72.11, 112.73, 112.73, 77.46, 75.74, 75.74]
+                // var dates = JSON.parse('{{ json_dates|safe }}')
+                // var trans = JSON.parse('{{ json_transactions|safe }}')
+                console.log(typeof(trans[0]))
+                console.log(typeof(dates[0]))
+                console.log('Dates length:', dates.length);
+                console.log('Transactions length:', trans.length);
+                TESTER = document.getElementById('plot');
+                
+                var width = []
+                for (let i = 0; i < trans.length; i++) {
+                    width.push(4)
+                }
+                // Create the plot using Plotly
+                var data = [{
+                    x: dates,
+                    y: trans,
+                    type: 'bar',
+                    textposition: 'auto',
+                    hoverinfo: 'none',
+                    name: 'Expenses By Date',
+                    text: trans.map(num => num.toString()),
+                    width:4.5*100000000
+                }];
+                var layout = {
+                    title: {
+                        text: 'Expenses By Date',
+                        font: {
+                            size: 24
+                        },
+                        xref: 'paper',
+                        x: 0.5,
+                        y: 0.95
+                    },
+                    xaxis: {
+                        title: {
+                        text: 'Date'
+                    }},
+                    yaxis: {
+                        title: {
+                        text: 'Transactions'
+                    }},
+                    width:1200,
+                    height:600,
+                    barmode: 'group'
+                    
+                };
+                Plotly.newPlot('plot', data, layout);
+                TESTER.on('plotly_selected',async function(eventData){
+                    console.log(eventData);
+                    var ptx=[], pty=[]
+                    eventData.points.forEach(async function(pt) {
+                        ptx.push(pt.x)
+                        pty.push(pt.y)
+                    })
+                    var pie = [
+                    {
+                        values: pty,
+                        labels: ptx,
+                        name:'',
+                        domain: {column: 0},
+                        hoverinfo: 'label+percent+name',
+                        hole: .4,
+                        type: 'pie'
+                    }]
+                    var layout = {
+                        title: {
+                            text: 'Donut',
+                            font: {
+                                size: 24
+                            },
+                            xref: 'paper',
+                            x: 0.5,
+                            y: 0.95
+                        },
+                        annotations: [
+                            {
+                            font: {
+                                size: 20
+                            },
+                            showarrow: false,
+                            text: '',
+                            x: 0.17,
+                            y: 0.5
+                            },
+                            {
+                            font: {
+                                size: 20
+                            },
+                            showarrow: false,
+                            text: '',
+                            x: 0.82,
+                            y: 0.5
+                            }
+                        ],
+                        height: 600,
+                        width: 1000,
+                        showlegend: false,
+                        grid: {rows: 1, columns: 2}
+                        };
+                    Plotly.newPlot('plot2', pie, layout)
+                })
+            </script>
+    {% endif %}
+    </div>
+
+
+
+    <!-- Bootstrap JS (Optional - if you need JavaScript features) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
+
+</body>
+</html>

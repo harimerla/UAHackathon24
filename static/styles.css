@@ -1,0 +1,58 @@
+/* styles.css */
+
+/* Custom styles for the User Information */
+.container {
+    margin-top: 50px;
+}
+
+.table {
+    width: 100%;
+}
+
+.btn-primary {
+    margin-top: 20px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    max-height: 70px;
+}
+
+.logo {
+    width: 90px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: 10%;
+}
+
+.navbar {
+    margin-bottom: 0; /* Remove default margin */
+    margin-right: 10px; 
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    /* margin: 0; */
+}
+
+.nav-item {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.nav-item:last-child {
+    margin-right: 0; /* Remove margin for the last item */
+}
+
+.button-container {
+    display: flex;
+}
+
+.form-inline {
+    margin-right: 10px; /* Adjust the spacing between forms */
+}
+

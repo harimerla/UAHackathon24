@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Analysis</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+ 
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Center the container horizontally */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 50vh; /* Adjust this value as needed */
+        }
+        .expenditure-list li {
+            border-bottom: 1px solid #e5e7eb; /* Add border line */
+            padding: 8px 0; /* Add padding */
+        }
+    </style>
+</head>
+<body style="background-color: black;">
+    <div style="background-color: lightgray; width: 100%;">
+        <h1 style="margin-left: 6%; color: white; text-shadow: 4px 4px 4px purple;"><a href='{{ url_for("index") }}'><img src="../static/images/logo.png" style="max-height:90px" alt="Company Logo" class="logo" height="10px"></a></h1>
+    </div>
+        <div  style="background-color: black;" >
+            
+        
+            <div style="margin-left:35%; margin-top: 6%; " >
+                <button id="analyzeButton" class="mr-4 bg-blue-500 text-white py-2 px-4 rounded " style="font-size: 24px;">Analyze Portfolio</button>
+                <button id="openAiButton"class="mr-4 bg-blue-500 text-white py-2 px-4 rounded "style="font-size: 24px;" >Top Holdings Information </button>
+                <button id="marketAnalyis"class="mr-4 bg-blue-500 text-white py-2 px-4 rounded "style="font-size: 24px;" >Market Analysis</button>
+ 
+            
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+            <div class="max-h-120 overflow-y-auto border border-gray-300 p-2 " style="width: 720px; margin-left:35%;margin-top: 50px;box-shadow: 25px 15px 30px rgba(128, 0, 128, 0.5);">
+                <h2 class="text-lg font-bold mb-2">Expenditure List</h2>
+                <ul style="color: white;font-size: 20px;" class="expenditure-list " >
+                    <li>Walmart: $40</li>
+                    <li>Costco: $23</li>
+                    <li>Dominos: $45</li>
+                    <li>Macy: $145</li>
+                    <li>Walmart: $145</li>
+                    <li>deli: $145</li>
+                    <li>store: $145</li>
+                    <li>Store: $145</li>
+                    <li>Shop: $60</li>
+                    <li>Target: $120</li>
+                    <li>Shop: $60</li>
+                    <li>Target: $120</li>
+                    <li>Shop: $60</li>
+                    <li>Target: $120</li>
+                    <li>Shop: $60</li>
+                    <li>Target: $120</li>
+                </ul>
+               
+            </div>
+ 
+            <iframe
+            style="margin-right:10% ; margin-top: 20%;"
+            allow="microphone;"
+            width="350"
+            height="430"
+            src="https://console.dialogflow.com/api-client/demo/embedded/e507239e-c00b-46fc-93b5-165be53d8d57">
+        </iframe>
+            </div>
+               
+        
+            <div id="plot" class="mb-10 shadow-md"></div>
+            
+            <script>
+                document.getElementById('analyzeButton').addEventListener('click', function() {
+                    window.location.href = '/analyze';  // Redirect to the '/openai' page
+                });
+        
+                document.getElementById('openAiButton').addEventListener('click', function() {
+                    window.location.href = '/openai';  // Redirect to the '/openai' page
+                });
+ 
+                document.getElementById('marketAnalyis').addEventListener('click', function() {
+                    window.location.href = '/market';  // Redirect to the '/openai' page
+                });
+            </script>
+        </div>
+   
+       
+ 
+</body>
+</html>
+ 

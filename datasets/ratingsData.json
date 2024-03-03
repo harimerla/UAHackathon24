@@ -1,0 +1,122 @@
+{
+  "categories": {
+    "essentials": {
+      "products": [
+        {
+          "product_name": "Toilet Paper (Pack of 12 Rolls)",
+          "prices": {
+            "Walmart": 4.3,
+            "Costco": 4.8,
+            "Target": 3.9,
+            "Sam's Club": 4.6,
+            "Publix": 4.2
+          }
+        },
+        {
+          "product_name": "Milk (1 Gallon)",
+          "prices": {
+            "Walmart": 4.5,
+            "Costco": 4.7,
+            "Target": 4.0,
+            "Sam's Club": 4.6,
+            "Publix": 4.3
+          }
+        },
+        {
+          "product_name": "Eggs (Dozen)",
+          "prices": {
+            "Walmart": 4.4,
+            "Costco": 4.6,
+            "Target": 4.1,
+            "Sam's Club": 4.5,
+            "Publix": 4.2
+          }
+        },
+        {
+          "product_name": "Bread (Loaf, White)",
+          "prices": {
+            "Walmart": 4.2,
+            "Costco": 4.7,
+            "Target": 3.8,
+            "Sam's Club": 4.5,
+            "Publix": 4.0
+          }
+        },
+        {
+          "product_name": "Bottled Water (24-Pack, 16.9 oz bottles)",
+          "prices": {
+            "Walmart": 4.1,
+            "Costco": 4.8,
+            "Target": 3.7,
+            "Sam's Club": 4.6,
+            "Publix": 4.0
+          }
+        },
+        {
+          "product_name": "Chicken Breast (Per Pound)",
+          "prices": {
+            "Walmart": 4.3,
+            "Costco": 4.7,
+            "Target": 4.0,
+            "Sam's Club": 4.6,
+            "Publix": 4.2
+          }
+        }
+      ]
+    },
+    "healthcare": {
+      "products": [
+        {
+          "product_name": "Hand Sanitizer (8 oz)",
+          "prices": {
+            "Walmart": 4.6,
+            "Costco": 4.8,
+            "Target": 4.5,
+            "Sam's Club": 4.7,
+            "Publix": 4.6
+          }
+        },
+        {
+          "product_name": "Face Masks (Pack of 50)",
+          "prices": {
+            "Walmart": 4.7,
+            "Costco": 4.9,
+            "Target": 4.6,
+            "Sam's Club": 4.8,
+            "Publix": 4.7
+          }
+        },
+        {
+          "product_name": "Disinfectant Spray (16 oz)",
+          "prices": {
+            "Walmart": 4.5,
+            "Costco": 4.7,
+            "Target": 4.4,
+            "Sam's Club": 4.6,
+            "Publix": 4.5
+          }
+        },
+        {
+          "product_name": "Thermometer (Digital)",
+          "prices": {
+            "Walmart": 4.6,
+            "Costco": 4.8,
+            "Target": 4.5,
+            "Sam's Club": 4.7,
+            "Publix": 4.6
+          }
+        },
+        {
+          "product_name": "Multivitamins (Bottle of 100)",
+          "prices": {
+            "Walmart": 4.8,
+            "Costco": 4.9,
+            "Target": 4.7,
+            "Sam's Club": 4.8,
+            "Publix": 4.7
+          }
+        }
+      ]
+    }
+  }
+}

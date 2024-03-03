@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Analysis</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        #plot {
+            width: 80%;
+            height: 80%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div  >
+
+        <header class="header">
+            <a href='{{ url_for("index") }}'><img src="../static/images/logo.png" alt="Company Logo" class="logo" height="10"></a>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#">Home</a></li>
+                    <li class="nav-item"><a href="#">About</a></li>
+                    <li class="nav-item"><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+ 
+        <h1  style="margin-left: 45%; margin-top: 15%;">Portfolio Analysis</h1>
+ 
+        <div id="plot"></div>
+    
+        <script>
+            // Portfolio data in HTML
+            var portfolioData = [
+                {"name": "Qualcomm Inc", "quantity": 30, "current_price": 1000},
+                {"name": "Tyson Foods", "quantity": 45, "current_price": 2600},
+                {"name": "AstraZeneca PLC", "quantity": 35, "current_price": 2600},
+                {"name": "Google", "quantity": 15, "current_price": 2600}
+            ];
+    
+            // Extract data for plotting
+            var labels = portfolioData.map(asset => asset.name);
+            var values = portfolioData.map(asset => asset.quantity * asset.current_price);
+    
+            // Create bar graph
+            var data = [{
+                x: labels,
+                y: values,
+                type: 'bar'
+            }];
+    
+            var layout = {
+                title: 'Portfolio Distribution'
+            };
+    
+            Plotly.newPlot('plot', data, layout);
+        </script>
+    </div>
+ 
+</body>
+</html>
+ 

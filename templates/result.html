@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Graph Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        canvas {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href='{{ url_for("index") }}'><img src="../static/images/logo.png" alt="Company Logo" class="logo" height="10"></a>
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#">Home</a></li>
+                <li class="nav-item"><a href="#">About</a></li>
+                <li class="nav-item"><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h2 style="margin-top: 2%; text-align: center;" >Most Important Sectors on Which Economy Depends</h2>
+    <canvas id="barChart" style="width: 1000px; height: 500px; margin-top: 2%;"></canvas>
+    <h1>Debt Over Time</h1>
+    <h3>When public debt reaches unsustainable levels, it can contribute to the onset of a recession through various channels.
+ 
+        Firstly, high levels of debt often necessitate higher taxes or reduced government spending to service the debt. Increased taxes can lower disposable income for households and reduce business profits, leading to decreased consumer spending and investment, which are key drivers of economic growth. Similarly, cuts in government spending can directly reduce aggregate demand in the economy, as government purchases of goods and services decline.
+        
+        Secondly, escalating debt can erode investor confidence and raise concerns about the government's ability to repay its obligations. This can lead to higher borrowing costs for the government, as investors demand higher interest rates to compensate for the perceived risk. Higher interest rates can dampen private sector investment and consumption, further slowing economic activity.</h3>
+       
+        <button id="chartgenerate" class="mr-4 bg-blue-500 text-white py-2 px-4 rounded " style="font-size: 24px;">Check Us Det</button>
+ 
+    <div id="plot"></div>
+    <table id="sectorGrowthTable">
+        <tr>
+            <th>Sector</th>
+            <th>Growth Information</th>
+        </tr>
+        {% for sector in sectors %}
+        <tr>
+            <td>{{ sector }}</td>
+            <td>{{ growth_data[sector] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script>
+        // Load the Plotly line chart
+        Plotly.d3.csv('{{ plot_path }}', function(data) {
+            var layout = {
+                title: 'Debt Over Time',
+                xaxis: { title: 'Record Date' },
+                yaxis: { title: 'Debt' },
+                legend: { orientation: 'h', x: 0, y: 1.1 },
+                hovermode: 'closest',
+                plot_bgcolor: 'rgba(0,0,0,0)'
+            };
+            Plotly.newPlot('plot', data, layout);
+        });
+    </script>
+    <script>
+        // Data for the bar graph
+        var data = {
+            labels: ['Financial Services', 'Technology and Innovation', 'Healthcare', 'Manufacturing', 'Energy', 'Agriculture', 'Education', 'Entertainment and Media', 'Transportation', 'Tourism'],
+            datasets: [{
+                label: 'Economic Sectors',
+                data: [10, 15, 20, 5, 10, 10, 8, 7, 5, 10], // Example data (percentage distribution)
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(0, 128, 0, 0.5)',
+                    'rgba(255, 0, 255, 0.5)',
+                    'rgba(255, 165, 0, 0.5)',
+                    'rgba(128, 128, 128, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 128, 0, 1)',
+                    'rgba(255, 0, 255, 1)',
+                    'rgba(255, 165, 0, 1)',
+                    'rgba(128, 128, 128, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+ 
+        // Create bar graph
+        var ctx = document.getElementById('barChart').getContext('2d');
+        var barChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'bottom'
+                },
+                title: {
+                    display: true,
+                    text: 'Economic Sectors Distribution'
+                }
+            }
+        });
+    </script>
+ 
+<script>
+    document.getElementById('chartgenerate').addEventListener('click', function() {
+        window.location.href = '/show_chart';  // Redirect to the '/openai' page
+    });
+</script>
+</body>
+</html>
+ 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <header class="header">
+        <a href='{{ url_for("index") }}'><img src="../static/images/logo.png" alt="Company Logo" class="logo" height="10"></a>
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#">Home</a></li>
+                <li class="nav-item"><a href="#">About</a></li>
+                <li class="nav-item"><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="main" style="margin: auto;">
+        <br><br><br>
+        <div id="gpt-reco" class="card text-white bg-success" style="box-shadow: 0 0 35px rgba(0, 0, 0, 0.7);border-radius: 25px;max-width: 18rem; margin-left: 25%; padding-top: 5px; padding-bottom: 5px">
+            {% if output %}
+                <h5 class="card-header text-center">AI Analysis</h5>
+                <p class="text-center p-2">{{output}}</p>
+            {% endif %}
+        </div>
+        <br><br>
+        <div id="score-reco" class="card text-white bg-success " style="box-shadow: 0 0 35px rgba(0, 0, 0, 0.7);border-radius: 25px;max-width: 18rem;margin-left: 50%; padding-top: 5px; padding-bottom: 5px;">
+                <h5 class="card-header text-center">Financial Score</h5>
+                <p class="text-center p-2">
+                    <ul>
+                        <li>Overall Score: 28.8</li>
+                        <li>Emergency Fund: 10 (has sufficient emergency fund)</li>
+                        <li>Spends/Income Ratio: 4.5 (relatively high spends/income ratio)</li>
+                        <li>Investment Portfolio: 3 (lower investment portfolio value)</li>
+                        <li>Credit Usage: 8.5 (moderate credit usage)</li>
+                        <li>Insurance: 1.8 (lower insurance coverage)</li>
+                        <li>Factors affecting score: High spends/income ratio and lower insurance coverage.</li>
+                        </ul>
+                </p>
+        </div>
+        <br><br>
+        <div id="api-reco" class="card text-white bg-success" style="box-shadow: 0 0 35px rgba(0, 0, 0, 0.7);border-radius: 25px;max-width: 18rem;margin-left: 25%; padding-top: 5px; padding-bottom: 5px;">
+            {% if average_ratings %}
+                <h5 class="card-header text-center">Suggestions</h5>
+                <p class="text-center">
+                    <div><p style="margin-left: 10px;">Essentials Price Ratings:</p></div>
+                    {% for company, rating in average_ratings.items() %}
+                    <ul>
+                        <li {% if company == best_company %} class="best-company" {% endif %}>{{ company }} - {{ rating|round(2) }}</li>
+                    </ul>
+                    {% endfor %}</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS (Optional - if you need JavaScript features) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
+</body>
+</html>

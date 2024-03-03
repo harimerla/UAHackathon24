@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Task Master</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+
+    <header class="header">
+        <a href='{{ url_for("index") }}'><img src="../static/images/logo.png" alt="Company Logo" class="logo" height="10"></a>
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#">Home</a></li>
+                <li class="nav-item"><a href="#">About</a></li>
+                <li class="nav-item"><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="form">
+        <form action="/debit" method="POST">
+            <input type="text" name="prompt" id="content">
+            <input type="submit" value="Add Task">
+        </form>
+    </div>
+
+    {% if output %}
+        <p>{{output}}</p>
+    {% else %}
+        <h4 style="text-align: center">Enter Prompt to get result</h4>
+    {% endif %}
+
+</div>
+{% endblock %}

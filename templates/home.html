@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <a href='{{ url_for("index") }}'><img src="../static/images/logo.png" alt="Company Logo" class="logo"></a>
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#">Home</a></li>
+                <li class="nav-item"><a href="#">About</a></li>
+                <li class="nav-item"><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container mt-5">
+        <form action="/" method="GET">
+            <center><h1>User Information</h1></center>
+            <h4>Name:<strong> {{ userData.Name }}</strong></h4>
+            <h4>City:<strong> {{ userData.city }}</strong></h4>
+            <h4>State:<strong> {{ userData.state }}</strong></h4>
+            <h4>Total Expenditure:<strong> $ {{ userData.amt }} </strong></h4>
+        </form>
+
+        <div class="button-container">
+            <form action="/debit/1" method="POST" class="form-inline">
+                <input type="submit" class="btn btn-primary" value="Credit Analysis">
+            </form>
+            <form action="/recommend" class="form-inline">
+                <input type="submit" class="btn btn-primary" value="Recommendations">
+            </form>
+            <form action="/invest" class="form-inline">
+                <input type="submit" class="btn btn-primary" value="Investment Analysis">
+            </form>
+        </div>
+        
+        <!-- Section for last 5 transactions -->
+        <div class="mt-5">
+            <h2>Last 5 Transactions</h2>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Merchant</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in recentTransactions %}
+                    <tr>
+                        <td>{{ transaction.merchant }}</td>
+                        <td>{{ transaction.date}}</td>
+                        <td> $ {{ transaction.amt }} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional - if you need JavaScript features) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
