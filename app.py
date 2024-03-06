@@ -12,6 +12,7 @@ from PIL import Image
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import nltk
 import plotly.graph_objs as go
+import cred
 
 app = Flask(__name__)
 
@@ -139,7 +140,7 @@ def call_gpt():
     # print(text+str(json_data[:50])+text2)
 
     openai = OpenAI(
-        api_key="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"
+        api_key=cred.api_key
     )
 
     completion = openai.chat.completions.create(
@@ -218,7 +219,7 @@ def chatgpt():
             text = "Generate the latest news articles related to semiconductors"
         # text = "Generate the latest news articles related to semicondutor"
         openai = OpenAI(
-            api_key="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"
+            api_key=cred.api_key
         )
         completion = openai.chat.completions.create(
             model="gpt-4",
@@ -279,7 +280,7 @@ def market():
  
  
         openai = OpenAI(
-            api_key="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"
+            api_key=cred.api_key
         )
         growth_data = {}
         for sector in sectors:
@@ -354,7 +355,7 @@ def get_sector_growth():
  
  
         openai = OpenAI(
-            api_key="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"
+            api_key=cred.api_key
         )
         growth_data = {}
         for sector in sectors:
