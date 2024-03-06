@@ -12,9 +12,15 @@ from PIL import Image
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import nltk
 import plotly.graph_objs as go
-import cred
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
+
+def configure():
+    load_dotenv()
+
+configure()
 
 json_data = ''
 @app.route('/', methods=['POST', 'GET'])
@@ -140,7 +146,7 @@ def call_gpt():
     # print(text+str(json_data[:50])+text2)
 
     openai = OpenAI(
-        api_key=cred.api_key
+        api_key=os.getenv('api_key')
     )
 
     completion = openai.chat.completions.create(
@@ -203,7 +209,7 @@ def openai():
     key_products = [(company['name'], company['key_product']) for company in companies_data]
     return render_template('OpenAi.html', key_products=key_products)
  
-openai.api_key = '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'
+# openai.api_key = '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'
  
 @app.route('/chatgpt', methods=['POST','GET'])
 def chatgpt():
@@ -219,7 +225,7 @@ def chatgpt():
             text = "Generate the latest news articles related to semiconductors"
         # text = "Generate the latest news articles related to semicondutor"
         openai = OpenAI(
-            api_key=cred.api_key
+            api_key=os.getenv('api_key')
         )
         completion = openai.chat.completions.create(
             model="gpt-4",
@@ -280,7 +286,7 @@ def market():
  
  
         openai = OpenAI(
-            api_key=cred.api_key
+            api_key=os.getenv('api_key')
         )
         growth_data = {}
         for sector in sectors:
@@ -355,7 +361,7 @@ def get_sector_growth():
  
  
         openai = OpenAI(
-            api_key=cred.api_key
+            api_key=os.getenv('api_key')
         )
         growth_data = {}
         for sector in sectors:
